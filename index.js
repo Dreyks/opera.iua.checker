@@ -32,6 +32,12 @@ function receivePost(e)
 
 function goToInbox()
 {
+	var tabs = opera.extension.windows.getFocused().tabs;
+	opera.postError('Tabs open: ' + tabs.length);
+	tabs.forEach(function(tab){
+		if (-1 != tab.url.indexOf(iuaMboxURL))
+			opera.extension.tabs.close(tab);
+	});
 	opera.extension.tabs.create({url: formTabUrl(iuaMboxURL), focused: true});
 }
 
@@ -85,7 +91,7 @@ function getInboxCount(onSuccess, onError) {
 		xhr.open("GET", iuaCheckURL, true);
 		xhr.send(null);
 	} catch(e) {
-		//console.error(chrome.i18n.getMessage("iuacheck_exception", e));
+		oper.postError('catched' + e);
 		handleError();
 	}
 }
