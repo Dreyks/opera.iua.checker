@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<script src="index.js"></script>
+		<script>
+		var theButton;
+		window.addEventListener("load", function(){
+			
+			var ToolbarUIItemProperties = {
+				title: "I.UA mail checker",
+				icon: "icons/checkerIUA_16.png",
+				onclick: goToInbox,
+				badge: {
+				        
+				}
+			}
+			theButton = opera.contexts.toolbar.createItem(ToolbarUIItemProperties);
+			opera.contexts.toolbar.addItem(theButton);
+			opera.extension.onmessage = receivePost;
+			startRequest();
+		}, false);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

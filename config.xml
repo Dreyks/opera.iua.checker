@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="">
+	<name xml:lang="en">I.UA Mail Checker</name>
+	<name xml:lang="ru">Проверка почты I.UA</name>
+	<description xml:lang="en">Displays the number of unread messages in your I.UA Mailbox. You can also click the button to open your mailbox.</description>
+	<description xml:lang="ru">Отображает количество непрочитанных сообщений в Вашем почтовом ящике на I.UA. Чтобы открыть ящик, можно также нажать на эту кнопку.</description>
+	<feature name="opera:share-cookies" required="false"/>
+	<access origin="http://i.ua" subdomains="true"/>
+  	<author href="http://www.i.ua">www.i.ua</author>
+  	<icon src="icons/checkerIUA_128.png"/>
+</widget>
