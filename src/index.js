@@ -40,10 +40,7 @@ function goToInbox()
 		var tab = tabs[i];
 		if (-1 != tab.url.indexOf(iuaMboxURL))
 		{
-			if (tab.focused)
-				return;
-			
-			tab.update({focused: true});
+			tab.update({url: formTabUrl(iuaMboxURL), focused: true});
 			if (tab.focused)
 				return;
 		}
