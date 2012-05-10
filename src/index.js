@@ -28,25 +28,27 @@ function receivePost(e)
 		updateUnreadCount(num);
 	else if (sent.requestNeeded)
 		startRequest();
-	else if (sent.forceCreate)
-		goToInbox(true);
 }
 
-function goToInbox(forceCreate)
+function goToInbox()
 {
-	var forceCreate = forceCreate || false;
-	if (!forceCreate)
-		opera.extension.broadcastMessage({'inbox': iuaMboxURL});
-	else
+	var open = true;
+	var tabs = opera.extension.windows.getFocused().tabs;
+	opera.postError('Tabs open: ' + tabs.length);
+	for (var i in tabs)
 	{
-		var tabs = opera.extension.windows.getFocused().tabs;
-		opera.postError('Tabs open: ' + tabs.length);
-		tabs.forEach(function(tab){
-			if (-1 != tab.url.indexOf(iuaMboxURL))
-				opera.extension.tabs.close(tab);
-		});
-		opera.extension.tabs.create({url: formTabUrl(iuaMboxURL), focused: true});
+		var tab = tabs[i];
+		if (-1 != tab.url.indexOf(iuaMboxURL))
+		{
+			if (tab.focused)
+				return;
+			
+			tab.update({focused: true});
+			if (tab.focused)
+				return;
+		}
 	}
+	opera.extension.tabs.create({url: formTabUrl(iuaMboxURL), focused: true});
 }
 
 function getInboxCount(onSuccess, onError) {
