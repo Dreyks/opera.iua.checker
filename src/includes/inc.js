@@ -8,7 +8,7 @@ window.addEventListener('load', function(event) {
 	{
 		var numMsg = document.title.match(/\[([0-9]+)\]$/);
 		if (numMsg)
-			toSend.num = numMsg;
+			toSend.num = numMsg[1];
 	}
 	if (window.location.href.match(/^http:\/\/mbox[0-9]?\.i\.ua\//))
   	{

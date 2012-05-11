@@ -25,7 +25,10 @@ function receivePost(e)
 {
 	var sent = e.data;
 	if (sent.num)
-		updateUnreadCount(num);
+	{
+		opera.postError('received num ' + sent.num)
+		updateUnreadCount(sent.num);
+	}
 	else if (sent.requestNeeded)
 		startRequest();
 }
@@ -84,7 +87,7 @@ function getInboxCount(onSuccess, onError) {
 					handleSuccess(fullCountNode.textContent);
 					return;
 				} else {
-					opera.PostError('check node error');
+					opera.postError('check node error');
 				}
 			}
 
