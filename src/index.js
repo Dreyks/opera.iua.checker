@@ -36,7 +36,10 @@ function receivePost(e)
 function goToInbox()
 {
 	var open = true;
-	var tabs = opera.extension.windows.getFocused().tabs;
+	if (typeof opera.extension.windows.getLastFocused === 'function') // Opera > 12.0
+		var tabs = opera.extension.windows.getLastFocused().tabs.getAll();
+	else // Opera < 12.0
+		var tabs = opera.extension.windows.getFocused().tabs;
 	opera.postError('Tabs open: ' + tabs.length);
 	for (var i in tabs)
 	{
